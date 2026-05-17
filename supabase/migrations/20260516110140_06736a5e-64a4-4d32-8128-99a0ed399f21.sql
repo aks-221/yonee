@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.ensure_user_has_role() FROM anon, authenticated, public;
