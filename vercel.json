@@ -1,17 +1,10 @@
 {
   "outputDirectory": "dist/client",
   "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/favicon.ico"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)\\.js", "dest": "/$1.js" },
+    { "src": "/(.*)\\.css", "dest": "/$1.css" },
+    { "src": "/(.*)\\.png", "dest": "/$1.png" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
