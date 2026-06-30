@@ -1,4 +1,15 @@
 {
   "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "outputDirectory": ".output",
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/.output/public/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/.output/server/index.mjs"
+    }
+  ]
 }
