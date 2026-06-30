@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { MobileFrame } from "@/components/MobileFrame";
-import logo from "@/assets/yonnee-logo.png";
+import logo from "@/assets/fret-continental-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 
@@ -24,12 +24,12 @@ function Index() {
         <div className="absolute top-1/3 -right-10 size-40 rounded-full opacity-20" style={{ background: "var(--yonnee-sun)" }} />
 
         <div className="flex-1 flex flex-col items-center justify-center text-center gap-6 relative z-10">
-          <img src={logo} alt="Yonnee" className="w-64 max-w-full anim-fadeup" />
+          <img src={logo} alt="Fret Continental" className="w-64 max-w-full anim-fadeup rounded-2xl bg-white/80 p-2" />
           <p className="text-base font-medium px-4" style={{ color: "var(--yonnee-navy)" }}>
-            Envoyez et recevez vos colis<br/>en toute simplicité
+            Envoyez et recevez vos marchandises et colis<br/>en toute simplicité
           </p>
           <div className="flex flex-wrap gap-2 justify-center max-w-xs">
-            {["Clients", "Fournisseurs", "Commerçants", "GP Standard", "GP Express"].map((r) => (
+            {["Clients", "Fournisseurs", "Commerçants", "Fret Standard", "Fret Express", "Fret Cargo"].map((r) => (
               <span key={r} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/80 backdrop-blur" style={{ color: "var(--yonnee-navy)" }}>
                 {r}
               </span>

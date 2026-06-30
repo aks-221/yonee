@@ -43,6 +43,14 @@ function Announcements() {
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
 
+  const openCreateSheet = () => {
+    if (!user) {
+      toast.error("Connectez-vous pour publier une annonce");
+      return;
+    }
+    setCreating(true);
+  };
+
   const load = async () => {
     setLoading(true);
     // Toutes les annonces actives
@@ -84,18 +92,18 @@ function Announcements() {
         {/* Header */}
         <div className="relative overflow-hidden text-white px-5 pt-12 pb-7 rounded-b-[32px]"
           style={{ background: "linear-gradient(135deg, var(--yonnee-navy), var(--yonnee-sky))" }}>
-          <div aria-hidden className="absolute -top-10 -right-10 size-40 rounded-full opacity-30 blur-3xl" style={{ background: "var(--yonnee-orange)" }}/>
-          <div className="flex items-center justify-between">
+          <div aria-hidden className="pointer-events-none absolute -top-10 -right-10 size-40 rounded-full opacity-30 blur-3xl" style={{ background: "var(--yonnee-orange)" }}/>
+          <div className="relative z-10 flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-black">Annonces GP</h1>
               <p className="text-sm text-white/75">Tous les départs disponibles</p>
             </div>
-            <div className="flex gap-2">
-              <button onClick={load} className="size-10 rounded-full bg-white/20 grid place-items-center">
+            <div className="relative z-10 flex gap-2">
+              <button type="button" onClick={load} className="size-10 rounded-full bg-white/20 grid place-items-center">
                 <RefreshCw className="size-4"/>
               </button>
               {isGP && (
-                <button onClick={() => setCreating(true)} className="size-10 rounded-full bg-white grid place-items-center shadow" style={{ color: "var(--yonnee-navy)" }}>
+                <button type="button" onClick={openCreateSheet} aria-label="Ajouter une annonce" className="size-10 rounded-full bg-white grid place-items-center shadow" style={{ color: "var(--yonnee-navy)" }}>
                   <Plus className="size-5"/>
                 </button>
               )}
@@ -112,7 +120,13 @@ function Announcements() {
         {/* Mes annonces (GP seulement) */}
         {!loading && isGP && myAnn.length > 0 && (
           <div className="px-5 mt-4">
-            <h3 className="text-xs font-bold uppercase text-muted-foreground mb-2">Mes annonces</h3>
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <h3 className="text-xs font-bold uppercase text-muted-foreground">Mes annonces</h3>
+              <button type="button" onClick={openCreateSheet} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-bold shadow-sm border border-border active:scale-[0.98] transition" style={{ color: "var(--yonnee-navy)" }}>
+                <Plus className="size-3.5"/>
+                Nouvelle
+              </button>
+            </div>
             <div className="space-y-2">
               {myAnn.map((a) => (
                 <div key={a.id} className="bg-white rounded-2xl p-3 border border-border flex gap-3">
@@ -144,6 +158,20 @@ function Announcements() {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {!loading && isGP && myAnn.length === 0 && (
+          <div className="px-5 mt-4">
+            <button type="button" onClick={openCreateSheet} className="w-full rounded-2xl p-4 border-2 border-dashed bg-white text-left flex items-center gap-3 active:scale-[0.99] transition" style={{ borderColor: "color-mix(in oklab, var(--yonnee-orange) 35%, transparent)" }}>
+              <span className="size-11 rounded-xl grid place-items-center text-white shrink-0" style={{ background: "var(--yonnee-orange)" }}>
+                <Plus className="size-5"/>
+              </span>
+              <span>
+                <span className="block font-black" style={{ color: "var(--yonnee-navy)" }}>Ajouter une annonce</span>
+                <span className="block text-xs text-muted-foreground mt-0.5">Publiez un trajet standard ou express.</span>
+              </span>
+            </button>
           </div>
         )}
 

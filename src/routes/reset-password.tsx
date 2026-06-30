@@ -4,7 +4,7 @@ import { Lock, Loader2, CheckCircle2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import logo from "@/assets/yonnee-logo.png";
+import logo from "@/assets/fret-continental-logo.png";
 
 export const Route = createFileRoute("/reset-password")({ component: Reset });
 
@@ -42,7 +42,7 @@ function Reset() {
     <MobileFrame>
       <div className="min-h-full px-6 py-8" style={{ background: "var(--gradient-yonnee)" }}>
         <div className="flex flex-col items-center text-center mb-6">
-          <img src={logo} alt="Yonnee" className="w-28 mb-2"/>
+          <img src={logo} alt="Fret Continental" className="w-28 mb-2 rounded-2xl bg-white/80 p-1"/>
           <h1 className="text-2xl font-black" style={{ color: "var(--yonnee-navy)" }}>Nouveau mot de passe</h1>
         </div>
         {done ? (

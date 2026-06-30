@@ -4,7 +4,7 @@ import { BottomNav } from "@/components/BottomNav";
 import { CountryPicker } from "@/components/CountryPicker";
 import { Bell, Plane, Ship, Truck, Zap, Search, ScanLine, Navigation, ArrowRightLeft } from "lucide-react";
 import { useState } from "react";
-import logo from "@/assets/yonnee-logo.png";
+import logo from "@/assets/fret-continental-logo.png";
 import { useStore, useRequestLocation } from "@/lib/store";
 import { ROLE_LABEL, ROLE_COLOR, useUserRoles, pickPrimaryRole, useSession } from "@/lib/auth";
 

@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { MobileFrame } from "@/components/MobileFrame";
 import { ArrowLeft, User, Store, Package, Plane, Zap, ChevronRight, Mail, Lock, Phone, MapPin, FileText, CheckCircle2, Loader2, Crosshair } from "lucide-react";
 import { useState } from "react";
-import logo from "@/assets/yonnee-logo.png";
+import logo from "@/assets/fret-continental-logo.png";
 import { CountryPicker } from "@/components/CountryPicker";
 import { COUNTRIES } from "@/lib/gp-data";
 import { supabase } from "@/integrations/supabase/client";
@@ -16,8 +16,8 @@ const ROLES: { id: AppRole; label: string; desc: string; icon: typeof User; colo
   { id: "client",      label: "Client",       desc: "J'envoie ou reçois des colis",               icon: User,    color: "var(--yonnee-navy)" },
   { id: "supplier",    label: "Fournisseur",   desc: "Je vends et expédie des produits",           icon: Package, color: "var(--yonnee-leaf)" },
   { id: "merchant",    label: "Commerçant",    desc: "Boutique avec destinataires fréquents",      icon: Store,   color: "var(--yonnee-sun)" },
-  { id: "gp_standard", label: "GP Standard",  desc: "Je transporte des colis (tarif normal)",     icon: Plane,   color: "var(--yonnee-orange)" },
-  { id: "gp_express",  label: "GP Express",   desc: "Je transporte vite (tarif express)",         icon: Zap,     color: "var(--yonnee-orange)" },
+  { id: "gp_standard", label: "Fret Standard",  desc: "Livraison économique pour petits colis",     icon: Plane,   color: "var(--yonnee-orange)" },
+  { id: "gp_express",  label: "Fret Express",   desc: "Livraison prioritaire pour colis urgents",   icon: Zap,     color: "var(--yonnee-orange)" },
 ];
 
 const DOC_TYPES = ["Passeport ou CNI", "Visa / titre de séjour", "Justificatif de domicile", "Photo de profil"];
@@ -36,7 +36,7 @@ function RolePicker({ onPick }: { onPick: (r: AppRole) => void }) {
           <ArrowLeft className="size-5" /> Retour
         </Link>
         <div className="flex flex-col items-center text-center mb-6">
-          <img src={logo} alt="Yonnee" className="w-28 mb-2" />
+          <img src={logo} alt="Fret Continental" className="w-28 mb-2 rounded-2xl bg-white/80 p-1" />
           <h1 className="text-2xl font-black" style={{ color: "var(--yonnee-navy)" }}>Créer mon compte</h1>
           <p className="text-sm mt-1" style={{ color: "var(--yonnee-navy)", opacity: 0.7 }}>Choisissez votre profil</p>
         </div>
@@ -185,7 +185,7 @@ function RoleForm({ role, onBack }: { role: AppRole; onBack: () => void }) {
           <ArrowLeft className="size-5" /> Changer de profil
         </button>
         <div className="flex items-center gap-3 mb-5">
-          <img src={logo} alt="Yonnee" className="w-16" />
+          <img src={logo} alt="Fret Continental" className="w-16 rounded-xl bg-white/80 p-1" />
           <div>
             <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "var(--yonnee-navy)", opacity: 0.6 }}>Inscription</p>
             <h1 className="text-xl font-black" style={{ color: "var(--yonnee-navy)" }}>{meta.label}</h1>
@@ -221,7 +221,7 @@ function RoleForm({ role, onBack }: { role: AppRole; onBack: () => void }) {
             <label className="flex items-center gap-3 p-3 rounded-xl bg-secondary cursor-pointer">
               <input type="checkbox" checked={alsoOther} onChange={(e) => setAlsoOther(e.target.checked)} className="size-4"/>
               <span className="text-xs font-semibold" style={{ color: "var(--yonnee-navy)" }}>
-                Je peux faire les deux ({role === "gp_standard" ? "Standard + Express" : "Express + Standard"})
+                Je peux faire les deux ({role === "gp_standard" ? "Fret Standard + Fret Express" : "Fret Express + Fret Standard"})
               </span>
             </label>
           )}
@@ -234,9 +234,16 @@ function RoleForm({ role, onBack }: { role: AppRole; onBack: () => void }) {
               <p className="text-[11px] text-muted-foreground">Validation sous 24-48h. Compte inactif jusqu'à validation.</p>
               {DOC_TYPES.map((d) => {
                 const has = !!docs[d];
+                const inputId = `gp-doc-${d.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
                 return (
-                  <label key={d} className={`block rounded-xl border-2 px-3 py-2.5 text-xs font-semibold cursor-pointer transition ${has ? "border-emerald-500 bg-emerald-500/5 text-emerald-700" : "border-border bg-card"}`} style={!has ? { color: "var(--yonnee-navy)" } : undefined}>
-                    <input type="file" accept="image/*,application/pdf" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) setDocs((p) => ({ ...p, [d]: f })); }} />
+                  <label htmlFor={inputId} key={d} className={`relative block rounded-xl border-2 px-3 py-2.5 text-xs font-semibold cursor-pointer transition overflow-hidden ${has ? "border-emerald-500 bg-emerald-500/5 text-emerald-700" : "border-border bg-card"}`} style={!has ? { color: "var(--yonnee-navy)" } : undefined}>
+                    <input
+                      id={inputId}
+                      type="file"
+                      accept="image/*,application/pdf"
+                      className="absolute inset-0 size-full opacity-0 cursor-pointer"
+                      onChange={(e) => { const f = e.target.files?.[0]; if (f) setDocs((p) => ({ ...p, [d]: f })); }}
+                    />
                     <div className="flex items-center justify-between">
                       <span>{d}</span>
                       {has ? <CheckCircle2 className="size-4 text-emerald-600"/> : <span className="text-muted-foreground">+ Téléverser</span>}

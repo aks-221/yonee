@@ -1,14 +1,14 @@
 import type { AppRole } from "@/lib/auth";
 
-export type MenuKey = "home" | "search" | "tracking" | "wallet" | "profile" | "announcements" | "scan" | "admin" | "admin_users" | "admin_gp" | "admin_tx";
+export type MenuKey = "home" | "search" | "tracking" | "wallet" | "profile" | "announcements" | "scan" | "cargo" | "cargo_tracking" | "admin" | "admin_users" | "admin_gp" | "admin_tx" | "admin_cargo";
 
 export const MENU_BY_ROLE: Record<AppRole, MenuKey[]> = {
   client:      ["home", "search", "tracking", "wallet", "profile"],
   merchant:    ["home", "search", "tracking", "wallet", "profile"],
   supplier:    ["home", "search", "tracking", "wallet", "profile"],
-  gp_standard: ["announcements", "tracking", "scan", "wallet", "profile"],
-  gp_express:  ["announcements", "tracking", "scan", "wallet", "profile"],
-  admin:       ["admin", "admin_users", "admin_gp", "admin_tx", "profile"],
+  gp_standard: ["announcements", "cargo", "cargo_tracking", "tracking", "profile"],
+  gp_express:  ["announcements", "cargo", "cargo_tracking", "tracking", "profile"],
+  admin:       ["admin", "admin_users", "admin_gp", "admin_cargo", "admin_tx", "profile"],
 };
 
 export function menuFor(role: AppRole): MenuKey[] {

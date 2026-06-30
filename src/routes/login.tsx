@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { MobileFrame } from "@/components/MobileFrame";
 import { ArrowLeft, Mail, Lock, Loader2 } from "lucide-react";
 import { useState } from "react";
-import logo from "@/assets/yonnee-logo.png";
+import logo from "@/assets/fret-continental-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { pickPrimaryRole, type AppRole } from "@/lib/auth";
 import { lovable } from "@/integrations/lovable";
@@ -54,9 +54,9 @@ function Login() {
           <ArrowLeft className="size-5" /> Retour
         </Link>
         <div className="flex flex-col items-center text-center mb-6">
-          <img src={logo} alt="Yonnee" className="w-32 mb-2" />
+          <img src={logo} alt="Fret Continental" className="w-32 mb-2 rounded-2xl bg-white/80 p-1" />
           <h1 className="text-2xl font-black" style={{ color: "var(--yonnee-navy)" }}>Bon retour 👋</h1>
-          <p className="text-sm" style={{ color: "var(--yonnee-navy)", opacity: 0.7 }}>Connectez-vous à votre compte Yonnee</p>
+          <p className="text-sm" style={{ color: "var(--yonnee-navy)", opacity: 0.7 }}>Connectez-vous à votre compte Fret Continental</p>
         </div>
 
         <div className="bg-white rounded-3xl p-5 shadow-xl space-y-3">

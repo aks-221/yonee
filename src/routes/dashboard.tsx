@@ -3,8 +3,8 @@ import { MobileFrame } from "@/components/MobileFrame";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession, useUserRoles, pickPrimaryRole, ROLE_LABEL, ROLE_COLOR, signOut, type AppRole } from "@/lib/auth";
-import { Loader2, LogOut, Search, Bell, Plus, QrCode, Wallet, Package, Plane, Zap, Store, ShieldCheck, ClipboardList, MapPin, FileText, Truck } from "lucide-react";
-import logo from "@/assets/yonnee-logo.png";
+import { Loader2, LogOut, Search, Bell, Plus, Wallet, Package, Plane, Zap, Store, ShieldCheck, ClipboardList, MapPin, FileText, Truck, PackagePlus, PackageSearch, Boxes } from "lucide-react";
+import logo from "@/assets/fret-continental-logo.png";
 import { BottomNav } from "@/components/BottomNav";
 import { RoleAvatar, RoleBadge } from "@/components/RoleAvatar";
 
@@ -57,7 +57,7 @@ function RoleDashboard({ role, extraRoles, userId, email }: { role: AppRole; ext
         <div className="px-5 pt-6 pb-8 text-white relative" style={{ background: roleColor.gradient }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <img src={logo} alt="Yonnee" className="w-9 h-9 rounded-xl bg-white p-1"/>
+              <img src={logo} alt="Fret Continental" className="w-9 h-9 rounded-xl bg-white p-1 object-contain"/>
               <div>
                 <p className="text-[10px] uppercase tracking-widest opacity-80">{ROLE_LABEL[role]}</p>
                 <p className="text-sm font-bold">{profile?.full_name || email}</p>
@@ -173,24 +173,24 @@ const ROLE_META: Record<AppRole, { gradient: string; tipTitle: string; tip: stri
   },
   gp_standard: {
     gradient: "linear-gradient(135deg, var(--yonnee-orange), #d63d1a)",
-    tipTitle: "GP Standard",
-    tip: "Publiez votre prochain trajet pour recevoir des réservations rapidement.",
+    tipTitle: "Fret Standard",
+    tip: "Fret Standard reste le service économique pour petits colis. Fret Cargo est séparé et réservé aux gros volumes.",
     actions: [
-      { label: "Publier annonce", desc: "Nouveau trajet", to: "/announcements", icon: Plus, color: "var(--yonnee-orange)" },
-      { label: "Scanner QR", desc: "Valider un colis", to: "/scan", icon: QrCode, color: "var(--yonnee-navy)" },
-      { label: "Réservations", desc: "À accepter / en cours", to: "/tracking", icon: ClipboardList, color: "var(--yonnee-leaf)" },
-      { label: "Documents", desc: "Vérification GP", to: "/verification", icon: FileText, color: "var(--yonnee-sun)" },
+      { label: "Nouvelle expédition", desc: "Réserver un fret", to: "/announcements", icon: Plus, color: "var(--yonnee-orange)" },
+      { label: "Enregistrer un Cargo", desc: "Cargo depuis Fret Standard", to: "/cargo", icon: PackagePlus, color: "var(--yonnee-navy)" },
+      { label: "Suivi Cargo", desc: "Numéro, QR ou code de suivi", to: "/cargo-tracking", icon: PackageSearch, color: "var(--yonnee-leaf)" },
+      { label: "Historique", desc: "Expéditions et réservations", to: "/tracking", icon: ClipboardList, color: "var(--yonnee-sun)" },
     ],
   },
   gp_express: {
     gradient: "linear-gradient(135deg, #d63d1a, var(--yonnee-orange))",
-    tipTitle: "GP Express",
-    tip: "Les colis express vous rapportent plus — soyez rapide à les accepter !",
+    tipTitle: "Fret Express",
+    tip: "Fret Express gère les colis urgents. Fret Cargo reste un service indépendant pour gros volumes.",
     actions: [
-      { label: "Publier express", desc: "Trajet immédiat", to: "/announcements", icon: Zap, color: "var(--yonnee-orange)" },
-      { label: "Scanner QR", desc: "Prise en charge", to: "/scan", icon: QrCode, color: "var(--yonnee-navy)" },
-      { label: "Réservations", desc: "Express prioritaire", to: "/tracking", icon: ClipboardList, color: "var(--yonnee-leaf)" },
-      { label: "Documents", desc: "Vérification GP", to: "/verification", icon: FileText, color: "var(--yonnee-sun)" },
+      { label: "Nouvelle expédition", desc: "Réserver un fret urgent", to: "/announcements", icon: Zap, color: "var(--yonnee-orange)" },
+      { label: "Enregistrer Cargo urgent", desc: "Cargo depuis Fret Express", to: "/cargo", icon: PackagePlus, color: "var(--yonnee-navy)" },
+      { label: "Suivi temps réel", desc: "Cargo express en direct", to: "/cargo-tracking", icon: PackageSearch, color: "var(--yonnee-leaf)" },
+      { label: "Historique", desc: "Expéditions express", to: "/tracking", icon: ClipboardList, color: "var(--yonnee-sun)" },
     ],
   },
   admin: {
@@ -199,7 +199,7 @@ const ROLE_META: Record<AppRole, { gradient: string; tipTitle: string; tip: stri
     tip: "Accédez au dashboard admin pour valider les GP, modérer annonces et paiements.",
     actions: [
       { label: "Dashboard admin", desc: "KPIs & vue globale", to: "/admin", icon: ShieldCheck, color: "var(--yonnee-navy)" },
-      { label: "Vérification GP", desc: "Valider documents", to: "/admin/gp", icon: ShieldCheck, color: "var(--yonnee-orange)" },
+      { label: "Gestion Cargo", desc: "Statuts, documents, transporteurs", to: "/admin/cargo", icon: Boxes, color: "var(--yonnee-orange)" },
       { label: "Transactions", desc: "Paiements", to: "/admin/transactions", icon: Package, color: "var(--yonnee-leaf)" },
       { label: "Annonces", desc: "Modération", to: "/admin/announcements", icon: Plane, color: "var(--yonnee-sun)" },
     ],

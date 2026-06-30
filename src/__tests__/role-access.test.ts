@@ -14,19 +14,21 @@ describe("Role-based menu isolation", () => {
     expect(menuFor("merchant")).not.toContain("scan");
     expect(menuFor("merchant")).not.toContain("admin");
   });
-  it("GP Standard menu includes announcements & scan, not admin", () => {
+  it("Fret Standard menu includes freight, cargo and tracking, not admin", () => {
     const m = menuFor("gp_standard");
     expect(m).toContain("announcements");
-    expect(m).toContain("scan");
+    expect(m).toContain("cargo");
+    expect(m).toContain("cargo_tracking");
     expect(m).not.toContain("admin");
   });
-  it("GP Express menu includes announcements & scan", () => {
+  it("Fret Express menu includes freight, cargo and tracking", () => {
     const m = menuFor("gp_express");
     expect(m).toContain("announcements");
-    expect(m).toContain("scan");
+    expect(m).toContain("cargo");
+    expect(m).toContain("cargo_tracking");
   });
   it("Admin menu only contains admin entries + profile", () => {
-    expect(menuFor("admin")).toEqual(["admin", "admin_users", "admin_gp", "admin_tx", "profile"]);
+    expect(menuFor("admin")).toEqual(["admin", "admin_users", "admin_gp", "admin_cargo", "admin_tx", "profile"]);
   });
 });
 

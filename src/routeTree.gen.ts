@@ -22,6 +22,8 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CargoTrackingRouteImport } from './routes/cargo-tracking'
+import { Route as CargoRouteImport } from './routes/cargo'
 import { Route as AnnouncementsRouteImport } from './routes/announcements'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as RoleAvatarRouteImport } from './routes/RoleAvatar'
@@ -35,6 +37,7 @@ import { Route as BookingGpIdRouteImport } from './routes/booking.$gpId'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTransactionsRouteImport } from './routes/admin.transactions'
 import { Route as AdminGpRouteImport } from './routes/admin.gp'
+import { Route as AdminCargoRouteImport } from './routes/admin.cargo'
 import { Route as AdminAnnouncementsRouteImport } from './routes/admin.announcements'
 
 const WalletRoute = WalletRouteImport.update({
@@ -100,6 +103,16 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CargoTrackingRoute = CargoTrackingRouteImport.update({
+  id: '/cargo-tracking',
+  path: '/cargo-tracking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CargoRoute = CargoRouteImport.update({
+  id: '/cargo',
+  path: '/cargo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnnouncementsRoute = AnnouncementsRouteImport.update({
@@ -168,6 +181,11 @@ const AdminGpRoute = AdminGpRouteImport.update({
   path: '/gp',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminCargoRoute = AdminCargoRouteImport.update({
+  id: '/cargo',
+  path: '/cargo',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminAnnouncementsRoute = AdminAnnouncementsRouteImport.update({
   id: '/announcements',
   path: '/announcements',
@@ -179,6 +197,8 @@ export interface FileRoutesByFullPath {
   '/RoleAvatar': typeof RoleAvatarRoute
   '/admin': typeof AdminRouteWithChildren
   '/announcements': typeof AnnouncementsRoute
+  '/cargo': typeof CargoRoute
+  '/cargo-tracking': typeof CargoTrackingRoute
   '/dashboard': typeof DashboardRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/home': typeof HomeRoute
@@ -193,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/verification': typeof VerificationRoute
   '/wallet': typeof WalletRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/cargo': typeof AdminCargoRoute
   '/admin/gp': typeof AdminGpRoute
   '/admin/transactions': typeof AdminTransactionsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -207,6 +228,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/RoleAvatar': typeof RoleAvatarRoute
   '/announcements': typeof AnnouncementsRoute
+  '/cargo': typeof CargoRoute
+  '/cargo-tracking': typeof CargoTrackingRoute
   '/dashboard': typeof DashboardRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/home': typeof HomeRoute
@@ -221,6 +244,7 @@ export interface FileRoutesByTo {
   '/verification': typeof VerificationRoute
   '/wallet': typeof WalletRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/cargo': typeof AdminCargoRoute
   '/admin/gp': typeof AdminGpRoute
   '/admin/transactions': typeof AdminTransactionsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -237,6 +261,8 @@ export interface FileRoutesById {
   '/RoleAvatar': typeof RoleAvatarRoute
   '/admin': typeof AdminRouteWithChildren
   '/announcements': typeof AnnouncementsRoute
+  '/cargo': typeof CargoRoute
+  '/cargo-tracking': typeof CargoTrackingRoute
   '/dashboard': typeof DashboardRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/home': typeof HomeRoute
@@ -251,6 +277,7 @@ export interface FileRoutesById {
   '/verification': typeof VerificationRoute
   '/wallet': typeof WalletRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/cargo': typeof AdminCargoRoute
   '/admin/gp': typeof AdminGpRoute
   '/admin/transactions': typeof AdminTransactionsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -268,6 +295,8 @@ export interface FileRouteTypes {
     | '/RoleAvatar'
     | '/admin'
     | '/announcements'
+    | '/cargo'
+    | '/cargo-tracking'
     | '/dashboard'
     | '/forgot-password'
     | '/home'
@@ -282,6 +311,7 @@ export interface FileRouteTypes {
     | '/verification'
     | '/wallet'
     | '/admin/announcements'
+    | '/admin/cargo'
     | '/admin/gp'
     | '/admin/transactions'
     | '/admin/users'
@@ -296,6 +326,8 @@ export interface FileRouteTypes {
     | '/'
     | '/RoleAvatar'
     | '/announcements'
+    | '/cargo'
+    | '/cargo-tracking'
     | '/dashboard'
     | '/forgot-password'
     | '/home'
@@ -310,6 +342,7 @@ export interface FileRouteTypes {
     | '/verification'
     | '/wallet'
     | '/admin/announcements'
+    | '/admin/cargo'
     | '/admin/gp'
     | '/admin/transactions'
     | '/admin/users'
@@ -325,6 +358,8 @@ export interface FileRouteTypes {
     | '/RoleAvatar'
     | '/admin'
     | '/announcements'
+    | '/cargo'
+    | '/cargo-tracking'
     | '/dashboard'
     | '/forgot-password'
     | '/home'
@@ -339,6 +374,7 @@ export interface FileRouteTypes {
     | '/verification'
     | '/wallet'
     | '/admin/announcements'
+    | '/admin/cargo'
     | '/admin/gp'
     | '/admin/transactions'
     | '/admin/users'
@@ -355,6 +391,8 @@ export interface RootRouteChildren {
   RoleAvatarRoute: typeof RoleAvatarRoute
   AdminRoute: typeof AdminRouteWithChildren
   AnnouncementsRoute: typeof AnnouncementsRoute
+  CargoRoute: typeof CargoRoute
+  CargoTrackingRoute: typeof CargoTrackingRoute
   DashboardRoute: typeof DashboardRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   HomeRoute: typeof HomeRoute
@@ -467,6 +505,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cargo-tracking': {
+      id: '/cargo-tracking'
+      path: '/cargo-tracking'
+      fullPath: '/cargo-tracking'
+      preLoaderRoute: typeof CargoTrackingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cargo': {
+      id: '/cargo'
+      path: '/cargo'
+      fullPath: '/cargo'
+      preLoaderRoute: typeof CargoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/announcements': {
       id: '/announcements'
       path: '/announcements'
@@ -558,6 +610,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminGpRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/cargo': {
+      id: '/admin/cargo'
+      path: '/cargo'
+      fullPath: '/admin/cargo'
+      preLoaderRoute: typeof AdminCargoRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/announcements': {
       id: '/admin/announcements'
       path: '/announcements'
@@ -570,6 +629,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminAnnouncementsRoute: typeof AdminAnnouncementsRoute
+  AdminCargoRoute: typeof AdminCargoRoute
   AdminGpRoute: typeof AdminGpRoute
   AdminTransactionsRoute: typeof AdminTransactionsRoute
   AdminUsersRoute: typeof AdminUsersRoute
@@ -578,6 +638,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAnnouncementsRoute: AdminAnnouncementsRoute,
+  AdminCargoRoute: AdminCargoRoute,
   AdminGpRoute: AdminGpRoute,
   AdminTransactionsRoute: AdminTransactionsRoute,
   AdminUsersRoute: AdminUsersRoute,
@@ -603,6 +664,8 @@ const rootRouteChildren: RootRouteChildren = {
   RoleAvatarRoute: RoleAvatarRoute,
   AdminRoute: AdminRouteWithChildren,
   AnnouncementsRoute: AnnouncementsRoute,
+  CargoRoute: CargoRoute,
+  CargoTrackingRoute: CargoTrackingRoute,
   DashboardRoute: DashboardRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   HomeRoute: HomeRoute,

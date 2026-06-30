@@ -19,8 +19,8 @@ function AdminOverview() {
     <div className="px-5 pt-2 pb-6">
       <div className="grid grid-cols-2 gap-3">
         <Tile label="Utilisateurs" value={k?.users_count} icon={<Users className="size-4"/>}/>
-        <Tile label="GP inscrits" value={k?.gp_count} icon={<Plane className="size-4"/>}/>
-        <Tile label="GP à valider" value={k?.gp_pending} accent={(k?.gp_pending ?? 0) > 0} icon={<ShieldAlert className="size-4"/>}/>
+        <Tile label="Fret inscrits" value={k?.gp_count} icon={<Plane className="size-4"/>}/>
+        <Tile label="Fret à valider" value={k?.gp_pending} accent={(k?.gp_pending ?? 0) > 0} icon={<ShieldAlert className="size-4"/>}/>
         <Tile label="Réservations" value={k?.reservations_count} icon={<Package className="size-4"/>}/>
         <Tile label="Annonces actives" value={k?.active_announcements} icon={<Megaphone className="size-4"/>}/>
         <Tile label="Paiements en attente" value={k?.payments_pending} icon={<Clock className="size-4"/>}/>

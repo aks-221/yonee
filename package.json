@@ -90,6 +90,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
     "happy-dom": "^20.9.0",
+    "nitro": "npm:nitro-nightly@^3.0.1-20260630-211222-ad3a2d47",
     "prettier": "^3.7.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",

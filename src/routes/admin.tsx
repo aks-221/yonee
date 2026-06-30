@@ -3,7 +3,7 @@ import { MobileFrame } from "@/components/MobileFrame";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession, useUserRoles, signOut } from "@/lib/auth";
-import { Loader2, ShieldCheck, Users, Receipt, LayoutDashboard, Megaphone, LogOut, AlertTriangle } from "lucide-react";
+import { Loader2, ShieldCheck, Users, Receipt, LayoutDashboard, Megaphone, LogOut, AlertTriangle, Boxes } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin")({ component: AdminLayout });
@@ -54,6 +54,7 @@ function AdminLayout() {
     { to: "/admin", label: "Vue", icon: LayoutDashboard, exact: true },
     { to: "/admin/users", label: "Users", icon: Users },
     { to: "/admin/gp", label: "GP", icon: ShieldCheck },
+    { to: "/admin/cargo", label: "Cargo", icon: Boxes },
     { to: "/admin/announcements", label: "Annonces", icon: Megaphone },
     { to: "/admin/transactions", label: "Tx", icon: Receipt },
   ];

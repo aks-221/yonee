@@ -11,7 +11,7 @@ import type { AppRole } from "@/lib/auth";
 
 // Avatars SVG inline par rôle — couleurs Yonnee exactes
 // Client: bleu (#3BA7E8) · Fournisseur: vert (#16A34A) · Commerçant: rouge (#E0392B)
-// GP Standard: navy (#0B2A6B) · GP Express: violet (#7C3AED) · Admin: dark (#0F172A)
+// Fret Standard: navy (#0B2A6B) · Fret Express: violet (#7C3AED) · Admin: dark (#0F172A)
 
 const AVATARS: Record<AppRole, (size: number) => JSX.Element> = {
   client: (s) => (
@@ -92,8 +92,8 @@ export function RoleBadge({ role }: { role: AppRole }) {
     client:      { bg: "#E6F4FD", text: "#1E6FB8", label: "Client" },
     supplier:    { bg: "#E7F8EE", text: "#15803D", label: "Fournisseur" },
     merchant:    { bg: "#FDECEA", text: "#B91C1C", label: "Commerçant" },
-    gp_standard: { bg: "#E5EAF5", text: "#0B2A6B", label: "GP Standard" },
-    gp_express:  { bg: "#F1EAFE", text: "#5B21B6", label: "GP Express" },
+    gp_standard: { bg: "#E5EAF5", text: "#0B2A6B", label: "Fret Standard" },
+    gp_express:  { bg: "#F1EAFE", text: "#5B21B6", label: "Fret Express" },
     admin:       { bg: "#E2E8F0", text: "#0F172A", label: "Admin" },
   };
   const c = COLORS[role] ?? COLORS.client;

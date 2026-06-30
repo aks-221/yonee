@@ -75,8 +75,8 @@ export const ROLE_LABEL: Record<AppRole, string> = {
   client: "Client",
   merchant: "Commerçant",
   supplier: "Fournisseur",
-  gp_standard: "GP Standard",
-  gp_express: "GP Express",
+  gp_standard: "Fret Standard",
+  gp_express: "Fret Express",
   admin: "Administrateur",
 };
 

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Home, Search, Package, User, Store, ClipboardList, Boxes, Inbox, Megaphone, QrCode, Zap, Users, ShieldCheck, Receipt, LayoutDashboard, Wallet } from "lucide-react";
+import { Home, Search, Package, User, Store, ClipboardList, Boxes, Inbox, Megaphone, Zap, Users, ShieldCheck, Receipt, LayoutDashboard, Wallet, PackagePlus, PackageSearch } from "lucide-react";
 import { useUserRoles, pickPrimaryRole, ROLE_COLOR, type AppRole } from "@/lib/auth";
 import { useT } from "@/lib/i18n";
 
@@ -33,18 +33,18 @@ function itemsFor(role: AppRole, t: (k: string) => string): Item[] {
       ];
     case "gp_standard":
       return [
-        { to: "/announcements", label: t("nav.announces"), icon: Megaphone },
-        { to: "/tracking", label: t("nav.bookings"), icon: ClipboardList },
-        { to: "/scan", label: t("nav.scan"), icon: QrCode },
-        { to: "/wallet", label: t("nav.wallet"), icon: Wallet },
+        { to: "/announcements", label: t("nav.freight"), icon: Megaphone },
+        { to: "/cargo", label: t("nav.cargo"), icon: PackagePlus },
+        { to: "/cargo-tracking", label: t("nav.cargo_tracking"), icon: PackageSearch },
+        { to: "/tracking", label: t("nav.history"), icon: ClipboardList },
         { to: "/profile", label: t("nav.profile"), icon: User },
       ];
     case "gp_express":
       return [
-        { to: "/announcements", label: t("nav.live"), icon: Zap },
-        { to: "/tracking", label: t("nav.bookings"), icon: ClipboardList },
-        { to: "/scan", label: t("nav.scan"), icon: QrCode },
-        { to: "/wallet", label: t("nav.wallet"), icon: Wallet },
+        { to: "/announcements", label: t("nav.freight"), icon: Zap },
+        { to: "/cargo", label: t("nav.cargo"), icon: PackagePlus },
+        { to: "/cargo-tracking", label: t("nav.cargo_tracking"), icon: PackageSearch },
+        { to: "/tracking", label: t("nav.history"), icon: ClipboardList },
         { to: "/profile", label: t("nav.profile"), icon: User },
       ];
     case "admin":
@@ -52,8 +52,8 @@ function itemsFor(role: AppRole, t: (k: string) => string): Item[] {
         { to: "/admin", label: t("nav.overview"), icon: LayoutDashboard },
         { to: "/admin/users", label: t("nav.users"), icon: Users },
         { to: "/admin/gp", label: t("nav.gpverif"), icon: ShieldCheck },
+        { to: "/admin/cargo", label: t("nav.admin_cargo"), icon: Boxes },
         { to: "/admin/transactions", label: t("nav.tx"), icon: Receipt },
-        { to: "/profile", label: t("nav.profile"), icon: User },
       ];
     default:
       return [];
